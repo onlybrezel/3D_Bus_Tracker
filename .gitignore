@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.DS_Store
+coverage
+playwright-report
+test-results
+*.log
+docker/certs/*.crt
+docker/certs/*.key

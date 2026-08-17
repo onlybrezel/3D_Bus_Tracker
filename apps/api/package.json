@@ -1,0 +1,28 @@
+{
+  "name": "@bus-tracker/api",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx watch src/server.ts",
+    "dev:worker": "tsx watch src/worker.ts",
+    "start": "node dist/server.js",
+    "start:worker": "node dist/worker.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint src --max-warnings 0",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@bus-tracker/geo": "workspace:*",
+    "@bus-tracker/shared": "workspace:*",
+    "@fastify/rate-limit": "^10.3.0",
+    "fastify": "^5.5.0",
+    "mariadb": "^3.4.5",
+    "pino": "^9.9.0",
+    "zod": "^4.0.17"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.4",
+    "vitest": "^3.2.4"
+  }
+}
