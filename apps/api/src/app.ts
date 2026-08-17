@@ -97,7 +97,7 @@ export function buildApp() {
     const vehicle = registry.get(decodeURIComponent((request.params as { id: string }).id));
     return vehicle ?? reply.code(404).send({ error: "Vehicle not found" });
   });
-  app.post("/internal/ingestion/snapshot", async (request, reply) => {
+  app.post("/internal/ingestion/snapshot", { bodyLimit: 32 * 1024 * 1024 }, async (request, reply) => {
     if (request.headers.authorization !== `Bearer ${config.INGESTION_TOKEN}`) return reply.code(401).send({ error: "Unauthorized" });
     const result = ingestionSchema.safeParse(request.body);
     if (!result.success) return reply.code(400).send({ error: "Invalid snapshot" });
