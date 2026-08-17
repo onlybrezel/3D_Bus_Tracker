@@ -10,7 +10,7 @@ const envSchema = z.object({
   MARIADB_PASSWORD: z.string().default("bus_tracker"),
   VEHICLE_SOURCE: z.enum(["mock", "bustimes"]).default("mock"),
   VEHICLE_POLL_INTERVAL_MS: z.coerce.number().int().min(1000).default(15000),
-  BUSTIMES_VEHICLES_URL: z.string().optional(),
+  BUSTIMES_VEHICLES_URL: z.string().url().default("https://bustimes.org/vehicles.json"),
   BUS_FEED_MIN_LAT: z.coerce.number().default(49.5),
   BUS_FEED_MAX_LAT: z.coerce.number().default(61.2),
   BUS_FEED_MIN_LON: z.coerce.number().default(-8.7),

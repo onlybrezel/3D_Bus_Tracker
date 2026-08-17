@@ -10,7 +10,7 @@ cp .env.example .env
 docker compose up --build
 ```
 
-Open [https://localhost](https://localhost). The local certificate is self-signed, so the browser displays a certificate warning. The default `mock` provider runs 36 vehicles around Nottingham without external bus-data access.
+Open [https://localhost](https://localhost). The local certificate is self-signed, so the browser displays a certificate warning. The default provider reads live UK vehicles from `https://bustimes.org/vehicles.json`.
 
 Create a local certificate before the first start:
 
@@ -25,14 +25,14 @@ openssl req -x509 -nodes -newkey rsa:2048 -days 365 \
 
 ## Live provider
 
-Set these values in `.env`:
+The public endpoint is configured by default. To set it explicitly, use:
 
 ```env
 VEHICLE_SOURCE=bustimes
-BUSTIMES_VEHICLES_URL=https://your-approved-feed-endpoint.example/vehicles
+BUSTIMES_VEHICLES_URL=https://bustimes.org/vehicles.json
 ```
 
-The adapter adds the configured UK bounds as `minlat`, `maxlat`, `minlon` and `maxlon`. Confirm the endpoint contract and permission before public deployment; provider-specific fields stay within `apps/api/src/providers/bustimes.ts`.
+The adapter adds the configured UK bounds as `ymin`, `ymax`, `xmin` and `xmax`. Provider-specific fields stay within `apps/api/src/providers/bustimes.ts`.
 
 ## Local development
 
